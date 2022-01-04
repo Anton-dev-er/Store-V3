@@ -1,0 +1,18 @@
+{% load static %}
+<header class="header">
+  <div class="container">
+    <div class="header__inner">
+      <nav class="nav">
+        <a href="{% url 'home' %}" class="nav__link">Home</a>
+        <a href="{% url 'catalog' %}" class="nav__link">Shop</a>
+        <a href="#" class="nav__link">Contact</a>
+        <a href="#" class="nav__link">Profile</a>
+      </nav>
+
+      <div class="header__right">
+        <img class="header__wishlist" src="{% static 'img/heart-black.svg' %}" alt="">
+        <img class="header__basket" src="{% static 'img/shopping-cart.svg' %}" alt="">
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,44 @@
+{% load mptt_tags %}
+
+
+<div class="categories">
+
+  <div class="dropdown dropdown__gander">
+    <ul class="topmenu">
+      <li>
+        <a class="submenu-link" type="button">Gender</a>
+        <ul class="submenu">
+          {% for gender in categories_gender %}
+          <li>
+            <a href="{% url 'catalog_sex' slug=gender.slug %}">{{ gender }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="dropdown">
+    {% for cat,structure in categories|tree_info %}
+    {% if structure.new_level %}
+    <ul class="{% if cat.level == 1 %}topmenu{% else %}submenu{% endif %}">
+      <li>
+        {% else %}
+      </li>
+      <li>
+        {% endif %}
+        {% if not cat.is_leaf_node %}
+        <a class="submenu-link"
+           type="button">
+          {{ cat.title }} </a>
+        {% else %}
+        <a href="{% url 'good_by_category' slug_gender=slug_gender slug_category=cat.slug %}">{{ cat.title }} </a>
+        {% endif %}
+        {% for level in structure.closed_levels %}
+      </li>
+    </ul>
+    {% endfor %}
+    {% endfor %}
+  </div>
+
+</div>

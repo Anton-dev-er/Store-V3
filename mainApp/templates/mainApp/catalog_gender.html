@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="catalog">
+    {% for category in categories_sex %}
+    <div class="catalog__item" style="background:no-repeat url('{{ category.photo.url }}'); background-size: cover">
+      <a href="{% url 'catalog_sex' category.slug %}" class="catalog__btn"><span>{{ category.title }}</span></a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

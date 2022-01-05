@@ -21,14 +21,12 @@
     top: 23px;
     left: 80%;
 
-    background-color: black;
     fill: #B0BCC2;
 
 }
 
 .wishlist:hover #black-heart {
-    background-color: #B0BCC2;
-    fill: black;
+    fill: #e3d0a2;
 }
 
 

@@ -54,3 +54,14 @@ class GoodByCategoryView(ListView):
         }
 
         return render(request, self.template_name, context=context)
+
+
+class BasketView(View):
+    template_name = 'mainApp/basket.html'
+    def get(self, request, *args, **kwargs):
+
+        context = {
+
+        }
+
+        return render(request, self.template_name, context=context)

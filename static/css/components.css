@@ -1,0 +1,91 @@
+
+/*BTN WISHLIST STATUS*/
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.wishlist #black-heart {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 23px;
+    left: 80%;
+
+    background-color: black;
+    fill: #B0BCC2;
+
+}
+
+.wishlist:hover #black-heart {
+    background-color: #B0BCC2;
+    fill: black;
+}
+
+
+.status {
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    padding: 5px 16px;
+    font-size: 12px;
+    background: #1e1e1e;
+    color: #fff;
+    border-radius: 50px;
+
+}
+
+.btn__count {
+    display: flex;
+}
+
+
+/* COUNT BTN*/
+
+.btn__count__dec,
+.btn__count__inc {
+    display: flex;
+    height: 40px;
+    width: 40px;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: transparent;
+
+    border: 1px solid #1e1e1e;
+    border-radius: 45%;
+
+    cursor: pointer;
+}
+
+.btn__count__dec{
+    margin-right: 15px;
+}
+
+.btn__count__inc{
+    margin-left: 15px;
+}
+
+.btn__count__display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 120px;
+    background-color: #B0BCC2;
+    color: white;
+    font-size: 22px;
+
+    border-radius: 25px;
+
+}

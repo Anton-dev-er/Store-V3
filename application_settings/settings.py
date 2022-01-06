@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'mainApp.apps.MainappConfig',
-    'oauth.apps.OauthConfig',
 
     'mptt',
 ]
@@ -59,11 +58,7 @@ ROOT_URLCONF = 'application_settings.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
-            os.path.join(BASE_DIR, 'mainApp/templates'),
-            os.path.join(BASE_DIR, 'oauth/templates'),
-        ],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'mainApp/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,10 +132,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-
-ALGORITHM = 'HS256'
-
-ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
-
-GOOGLE_CLIENT_ID = '481860451165-0g2lhjjnha9shv7v8m5i1faqa9u0903g.apps.googleusercontent.com'

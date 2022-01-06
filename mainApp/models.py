@@ -33,6 +33,7 @@ class Category(MPTTModel):
         return self.title
 
 
+
 class Good(m.Model):
     title = m.CharField(max_length=250, verbose_name="Заголовок товара")
     subtitle = m.CharField(max_length=250, verbose_name="Под заголовок товара")

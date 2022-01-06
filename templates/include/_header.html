@@ -11,7 +11,9 @@
 
       <div class="header__right">
         <img class="header__wishlist" src="{% static 'img/heart-black.svg' %}" alt="">
-        <img class="header__basket" src="{% static 'img/shopping-cart.svg' %}" alt="">
+        <a href="{% url 'basket' %}">
+          <img class="header__basket" src="{% static 'img/shopping-cart.svg' %}" alt="">
+        </a>
       </div>
     </div>
   </div>

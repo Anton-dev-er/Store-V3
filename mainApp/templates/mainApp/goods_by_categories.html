@@ -3,18 +3,18 @@
 
 {% block content %}
 
-{% include 'mainApp/include/_categories.html' %}
+  {% include 'mainApp/include/_categories.html' %}
 
-<section class="products">
-  <div class="container">
-    <div class="products__inner">
-      <div class="products__list">
-        {% for good in goods %}
-        {% include 'mainApp/include/_output_good.html' %}
-        {% endfor %}
+  <section class="products">
+    <div class="container">
+      <div class="products__inner">
+        <div class="products__list">
+          {% for good in goods %}
+            {% include 'mainApp/include/_output_good.html' %}
+          {% endfor %}
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 {% endblock %}

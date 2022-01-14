@@ -1,0 +1,31 @@
+span::selection,
+input::selection,
+.product-btn::selection {
+    background-color: white;
+}
+
+.product-detail__inner {
+    margin-top: 50px;
+    display: flex;
+
+
+    font-family: "Amatic", sans-serif;
+}
+
+
+.product-detail__info,
+.product-detail__img {
+    margin: 0 10px;
+}
+
+.product-detail__info {
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+}
+
+
+.product-detail__info__btn {
+    margin-top: 50px;
+}
+

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+  <section class="basket__proucts">
+    <div class="container">
+      <div class="basket__proucts__list">
+        {% for item in basket %}
+          {% with good=item.good %}
+            <div class="basket__proucts__item">
+              <div class="basket__proucts__item__top">
+                <div class="basket__proucts__item__top__img ">
+                  <a href="{{ good.get_absolute_url }}">
+                    <img src="{{ good.photo.url }}" alt="" width="200" height="200">
+                  </a>
+                </div>
+                <div class="basket__proucts__item__top__info">
+                  <div class="basket__proucts__item__top__info__title">
+                    {{ good.title }}
+                  </div>
+                  <div class="basket__proucts__item__top__info__subtitle">
+                    Description: {{ good.description }}
+                  </div>
+                </div>
+              </div>
+              <div class="basket__proucts__item__bottom">
+                <div class="product-btn" data-id="{{ good.id }}">
+                  <span id="product-btn__dec{{ good.id }}" class="product-btn__qty">-</span>
+                  <input id="input{{ good.id }}" type="text" value="{{ item.qty }}">
+                  <span id="product-btn__inc{{ good.id }}" class="product-btn__qty">+</span>
+                </div>
+                <div class="basket__proucts__item__bottom__price">${{ item.total_price }}</div>
+              </div>
+            </div>
+          {% endwith %}
+        {% endfor %}
+      </div>
+      <button type="button"
+              id="update-button"
+              value="{{ good.pk }}"
+              class="product-btn">
+        Update to cart
+      </button>
+
+    </div>
+  </section>
+
+{% endblock %}

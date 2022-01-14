@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Category, Good
 
@@ -56,12 +56,7 @@ class GoodByCategoryView(ListView):
         return render(request, self.template_name, context=context)
 
 
-class BasketView(View):
-    template_name = 'mainApp/basket.html'
-    def get(self, request, *args, **kwargs):
+class GoodDetailView(DetailView):
+    template_name = 'mainApp/good_detail.html'
+    model = Good
 
-        context = {
-
-        }
-
-        return render(request, self.template_name, context=context)

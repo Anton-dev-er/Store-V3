@@ -1,29 +1,41 @@
-let price = document.getElementsByClassName("basket__proucts__item__bottom__price")[0];
+var items = document.getElementsByClassName('product-btn');
 
-let increment = document.getElementsByClassName("btn__count__inc")[0];
-let decrement = document.getElementsByClassName("btn__count__dec")[0];
-let count = document.getElementsByClassName("btn__count__display")[0];
+Array.from(items).forEach(
+    function (button) {
+        button.addEventListener('click', function (e) {
+            let productBtn = e.target.parentElement;
+            let goodId = productBtn.dataset.id
+
+            if (goodId === undefined){
+                goodId = ''
+            }
+
+            if (productBtn.className === 'product-btn') {
+                let increment = productBtn.querySelector(`#product-btn__inc${goodId}`);
+                let decrement = productBtn.querySelector(`#product-btn__dec${goodId}`);
+                let count = productBtn.querySelector(`#input${goodId}`);
+                let countValue = Number(count.value);
+
+                console.log(increment)
+                console.log(decrement)
+                console.log(count)
+                console.log(countValue)
 
 
-let countValue = count.innerHTML;
-const priceValue = price.innerHTML
+
+                increment.onclick = function () {
+                    count.value = countValue + 1;
+                };
 
 
-price.innerHTML = +priceValue * +countValue
+                decrement.onclick = function () {
+                    if (countValue > 0) {
+                        count.value = countValue - 1;
+                    }
+                };
+            }
+        })
+    });
 
-increment.onclick = function () {
-    countValue++;
-    count.innerHTML = countValue;
 
-    price.innerHTML = +countValue * +priceValue;
-};
-
-decrement.onclick = function () {
-    if (countValue > 0) {
-        countValue--;
-        count.innerHTML = countValue;
-
-        price.innerHTML = +countValue * +priceValue
-    }
-}
 

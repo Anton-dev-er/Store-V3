@@ -7,6 +7,7 @@ from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mainApp.urls')),
+    path('basket/', include('basket.urls')),
 ]
 
 if settings.DEBUG:

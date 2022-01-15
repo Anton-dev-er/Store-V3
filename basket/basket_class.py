@@ -15,11 +15,24 @@ class Basket:
         good_id = str(good.pk)
 
         if good_id in self.basket:
-            self.basket[good_id]['qty'] = qty
+            self.basket[good_id]['qty'] = int(self.basket[good_id]['qty']) + qty
+            print(type(qty))
         else:
             self.basket[good_id] = {'price': str(good.price), 'qty': qty}
+        self.save()
 
-        print(self.basket)
+    def update(self, new_goods_data):
+        good_ids = self.basket.keys()
+
+        for key, value in new_goods_data.items():
+            if key in good_ids:
+                self.basket[key]['qty'] = int(value['qty'])
+
+        self.save()
+
+    def delete(self, good_id):
+        if good_id in self.basket:
+            del self.basket[good_id]
 
         self.save()
 
@@ -37,5 +50,4 @@ class Basket:
         for item in basket.values():
             item['price'] = float(item['price'])
             item['total_price'] = item['price'] * item['qty']
-            print()
             yield item

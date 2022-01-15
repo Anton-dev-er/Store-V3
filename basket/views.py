@@ -1,9 +1,10 @@
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
-from django.views import View
 
 from basket.basket_class import Basket
 from mainApp.models import Good
+
+import json
 
 
 def basket_page(request):
@@ -22,3 +23,34 @@ def basket_add(request):
     response = JsonResponse({'Sucsess': True})
     return response
 
+
+def basket_update(request):
+    basket = Basket(request)
+    if request.POST.get('action') == 'UPDATE':
+        goods_data = request.POST.get('goods_data')
+        basket.update(json.loads(goods_data))
+
+        id_and_total_price = []
+
+        for id_, value in basket.basket.items():
+            id_and_total_price.append({ id_: mul([int(i) for i in value.values()])})
+
+        response = JsonResponse({'Ids and total prices': id_and_total_price})
+        return response
+
+
+def basket_delete(request):
+    basket = Basket(request)
+    if request.POST.get('action') == 'DELETE':
+        good_id = request.POST.get('goodid')
+
+        basket.delete(good_id=good_id)
+        response = JsonResponse({'OK': True})
+        return response
+
+
+def mul(lst):
+    m = 1
+    for i in lst:
+        m = i * m
+    return m

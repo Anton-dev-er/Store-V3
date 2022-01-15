@@ -1,5 +1,10 @@
-/*BTN WISHLIST STATUS*/
+span::selection,
+input::selection,
+.product-btn::selection {
+    background-color: white;
+}
 
+/*BTN WISHLIST STATUS*/
 .btn {
     display: flex;
     justify-content: center;
@@ -126,14 +131,7 @@
 }
 
 /*PRODUCT BTN*/
-.product-btn {
-    display: inline-block;
-    height: 55px;
-    width: 170px;
-    border: 2px solid #EEF1F2;
-    border-radius: 50px;
-    text-align: center;
-}
+
 
 input {
     width: 50px;
@@ -156,11 +154,19 @@ input {
 }
 
 .product-btn {
-    cursor: pointer;
-    background-color: transparent;
-
+    display: inline-block;
+    height: 55px;
+    width: 170px;
     padding: 16px 40px;
     border: 2px solid #EEF1F2;
     border-radius: 50px;
     text-align: center;
+
+    background-color: transparent;
+}
+
+
+
+.cursor-pointer{
+    cursor: pointer;
 }

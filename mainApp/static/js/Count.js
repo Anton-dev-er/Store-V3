@@ -1,6 +1,6 @@
-var items = document.getElementsByClassName('product-btn');
+let goods = document.querySelectorAll('.product-btn');
 
-Array.from(items).forEach(
+Array.from(goods).forEach(
     function (button) {
         button.addEventListener('click', function (e) {
             let productBtn = e.target.parentElement;
@@ -15,13 +15,6 @@ Array.from(items).forEach(
                 let decrement = productBtn.querySelector(`#product-btn__dec${goodId}`);
                 let count = productBtn.querySelector(`#input${goodId}`);
                 let countValue = Number(count.value);
-
-                console.log(increment)
-                console.log(decrement)
-                console.log(count)
-                console.log(countValue)
-
-
 
                 increment.onclick = function () {
                     count.value = countValue + 1;

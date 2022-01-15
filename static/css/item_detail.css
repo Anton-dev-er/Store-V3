@@ -1,9 +1,3 @@
-span::selection,
-input::selection,
-.product-btn::selection {
-    background-color: white;
-}
-
 .product-detail__inner {
     margin-top: 50px;
     display: flex;

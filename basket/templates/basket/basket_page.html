@@ -9,7 +9,7 @@
       <div class="basket__proucts__list">
         {% for item in basket %}
           {% with good=item.good %}
-            <div class="basket__proucts__item">
+            <div id="basket__item{{ good.pk }}" class="basket__proucts__item">
               <div class="basket__proucts__item__top">
                 <div class="basket__proucts__item__top__img ">
                   <a href="{{ good.get_absolute_url }}">
@@ -26,12 +26,22 @@
                 </div>
               </div>
               <div class="basket__proucts__item__bottom">
-                <div class="product-btn" data-id="{{ good.id }}">
-                  <span id="product-btn__dec{{ good.id }}" class="product-btn__qty">-</span>
-                  <input id="input{{ good.id }}" type="text" value="{{ item.qty }}">
-                  <span id="product-btn__inc{{ good.id }}" class="product-btn__qty">+</span>
+                <button type="button"
+                        id="delete-button"
+                        data-id="{{ good.pk }}"
+                        class="product-btn cursor-pointer">
+                  Delete
+                </button>
+                <div style="display: flex; align-items: center">
+                  <div class="product-btn" id="product-btn__busket" data-id="{{ good.pk }}">
+                    <span id="product-btn__dec{{ good.pk }}" class="product-btn__qty">-</span>
+                    <input id="input{{ good.pk }}" type="text" value="{{ item.qty }}">
+                    <span id="product-btn__inc{{ good.pk }}" class="product-btn__qty">+</span>
+                  </div>
+                  <div id="item__total-price{{ good.pk }}" class="basket__proucts__item__bottom__price">
+                    ${{ item.total_price }}
+                  </div>
                 </div>
-                <div class="basket__proucts__item__bottom__price">${{ item.total_price }}</div>
               </div>
             </div>
           {% endwith %}
@@ -39,12 +49,69 @@
       </div>
       <button type="button"
               id="update-button"
-              value="{{ good.pk }}"
-              class="product-btn">
-        Update to cart
+              class="product-btn cursor-pointer">
+        Update Items
       </button>
-
     </div>
   </section>
+
+  <script>
+      $(document).on('click', '#update-button', function (e) {
+          e.preventDefault();
+          let good_btns = document.querySelectorAll('#product-btn__busket');
+
+          let goods_data = {}
+
+          for (let item of good_btns) {
+              let itemid = item.dataset.id
+              let qty = item.querySelector(`#input${itemid}`).value
+
+              goods_data[itemid] = {'id': itemid, 'qty': qty}
+          }
+
+          $.ajax({
+              type: 'POST',
+              url: '{% url "basket:basket_update" %}',
+              data: {
+                  goods_data: JSON.stringify(goods_data),
+                  csrfmiddlewaretoken: "{{csrf_token}}",
+                  action: 'UPDATE'
+              },
+              success: function (json) {
+                  let items_price = document.querySelectorAll('.basket__proucts__item__bottom__price')
+                  let new_elements = json['Ids and total prices']
+
+                  for (let value of new_elements) {
+                      let id = Object.keys(value)[0]
+                      let total_price = Object.values(value)[0]
+                      let test = document.querySelector(`#item__total-price${id}`).innerHTML = `$${total_price.toFixed(1)}`
+                      console.log(test.innerHTML)
+                  }
+
+              },
+              error: function (xhr, errmsg, err) {
+              }
+          });
+      })
+
+      $(document).on('click', '#delete-button', function (e) {
+          e.preventDefault();
+          let good_id = this.dataset.id
+          $.ajax({
+              type: 'POST',
+              url: '{% url "basket:basket_delete" %}',
+              data: {
+                  goodid: good_id,
+                  csrfmiddlewaretoken: "{{csrf_token}}",
+                  action: 'DELETE'
+              },
+              success: function (json) {
+                  document.querySelector(`#basket__item${good_id}`).remove()
+              },
+              error: function (xhr, errmsg, err) {
+              }
+          });
+      })
+  </script>
 
 {% endblock %}

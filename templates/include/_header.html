@@ -6,10 +6,21 @@
         <a href="{% url 'home' %}" class="nav__link">Home</a>
         <a href="{% url 'catalog' %}" class="nav__link">Shop</a>
         <a href="#" class="nav__link">Contact</a>
-        <a href="#" class="nav__link">Profile</a>
+        <a href="{% url 'account:profile' %}" class="nav__link">Profile
+          {% if user.is_authenticated %}
+          - {{ user }}
+          {% endif %}
+        </a>
       </nav>
 
       <div class="header__right">
+        {% if user.is_authenticated %}
+        <a href="{% url 'account:logout' %}">Logout</a>
+        {% else %}
+        <a style="margin-right: 15px;" href="{% url 'account:login' %}">Login</a>
+        <a style="margin-right: 15px;" href="{% url 'account:register' %}">Register</a>
+        {% endif %}
+
         <img class="header__wishlist" src="{% static 'img/heart-black.svg' %}" alt="">
         <a href="{% url 'basket:basket_page' %}">
           <img class="header__basket" src="{% static 'img/shopping-cart.svg' %}" alt="">

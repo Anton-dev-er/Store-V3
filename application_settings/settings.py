@@ -38,9 +38,12 @@ INSTALLED_APPS = [
 
     'mainApp.apps.MainappConfig',
     'basket.apps.BasketConfig',
+    'account.apps.AccountConfig',
 
     'mptt',
+    'crispy_forms',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,6 +63,7 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
                  os.path.join(BASE_DIR, 'mainApp/templates'),
                  os.path.join(BASE_DIR, 'basket/templates'),
+                 os.path.join(BASE_DIR, 'account/templates'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -132,3 +136,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+)
+AUTH_USER_MODEL = 'account.UserBase'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

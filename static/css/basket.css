@@ -40,9 +40,10 @@
 
 .basket__proucts__item__bottom {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
 
+    margin-top: 10px;
     margin-bottom: 50px;
 }
 

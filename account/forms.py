@@ -8,7 +8,7 @@ from .models import UserBase
 class UserLoginForm(forms.Form):
     email = forms.CharField(label="email", widget=forms.EmailInput,)
     password = forms.CharField(label="password", widget=forms.PasswordInput)
-    
+
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
         for field in self.visible_fields():
@@ -49,4 +49,21 @@ class RegistrationForm(forms.ModelForm):
         super(RegistrationForm, self).__init__(*args, **kwargs)
         for field in self.visible_fields():
             field.field.widget.attrs['class'] = 'auth__field__input'
+
+
+class PwdResetForm(PasswordResetForm):
+    email = forms.EmailField(max_length=254)
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        u = UserBase.objects.filter(email=email)
+        if not u:
+            raise forms.ValidationError(
+                'Unfortunatley we can not find that email address')
+        return email
+
+
+class PwdResetConfirmForm(SetPasswordForm):
+    password = forms.CharField(label='New password')
+    password__repeat = forms.CharField(label='Repeat password')
 

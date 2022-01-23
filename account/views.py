@@ -37,7 +37,7 @@ def account_register(request):
             send_mail(subject=subject,
                       message=message,
                       from_email='from_email@gmail.com',
-                      recipient_list=to_email,
+                      recipient_list=[to_email],
                       fail_silently=False)
             return HttpResponse('registered succesfully and activation sent')
     else:

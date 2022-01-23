@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <h1>{{ request.get_full_path }}</h1>
+  {% if 'email' in request.get_full_path %}
+    <h3>Password Reset Success</h3>
+    <p>Check your email for instructions</p>
+  {% endif %}
+  {% if 'complete' in request.get_full_path %}
+    <h3>Password Reset Success</h3>
+    <a href="{% url "account:login" %}">Login</a>
+  {% endif %}
+
+
+{% endblock %}

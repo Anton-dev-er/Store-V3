@@ -1,0 +1,59 @@
+input, textarea {
+    outline: none;
+    border: none;
+}
+
+/*AUTH COMPONENT*/
+
+.auth-title {
+    font-size: 32px;
+}
+
+.auth__field {
+    margin-bottom: 10px;
+}
+
+.auth__field label {
+    display: inline-block;
+    width: 100px;
+    text-align: left;
+}
+
+.auth__field__input {
+    padding: 5px;
+    min-width: 300px;
+    margin-left: 50px;
+    border: 1px solid #B0BCC2;
+    background-color: white;
+}
+
+.auth__btn {
+    padding: 20px 0;
+    margin-top: 25px;
+}
+.auth__btn:hover {
+    background-color: #B0BCC2;
+    color: white;
+}
+
+
+/* LOGIN REGISTER*/
+.auth-register__inner,
+.auth-login__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 100px;
+    align-items: center;
+}
+#auth-register__form,
+#auth-login__form {
+    margin-top: 50px;
+    padding: 25px 50px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+
+.auth__error {
+    color: red;
+}

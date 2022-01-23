@@ -20,7 +20,9 @@ def basket_add(request):
 
         basket.add(good=good, qty=good_qty)
 
-    response = JsonResponse({'Sucsess': True})
+    basketqty = basket.__len__()
+    response = JsonResponse({'qty': basketqty})
+
     return response
 
 
@@ -33,9 +35,13 @@ def basket_update(request):
         id_and_total_price = []
 
         for id_, value in basket.basket.items():
-            id_and_total_price.append({ id_: mul([int(i) for i in value.values()])})
+            id_and_total_price.append({id_: mul([int(i) for i in value.values()])})
 
-        response = JsonResponse({'Ids and total prices': id_and_total_price})
+        basketqty = basket.__len__()
+
+        response = JsonResponse({'Ids and total prices': id_and_total_price,
+                                 'total': basket.get_total_price(),
+                                 'qty': basketqty, })
         return response
 
 
@@ -45,7 +51,10 @@ def basket_delete(request):
         good_id = request.POST.get('goodid')
 
         basket.delete(good_id=good_id)
-        response = JsonResponse({'OK': True})
+
+        basketqty = basket.__len__()
+        response = JsonResponse({'qty': basketqty})
+
         return response
 
 

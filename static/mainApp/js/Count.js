@@ -6,7 +6,7 @@ Array.from(goods).forEach(
             let productBtn = e.target.parentElement;
             let goodId = productBtn.dataset.id
 
-            if (goodId === undefined){
+            if (goodId === undefined) {
                 goodId = ''
             }
 
@@ -15,20 +15,19 @@ Array.from(goods).forEach(
                 let decrement = productBtn.querySelector(`#product-btn__dec${goodId}`);
                 let count = productBtn.querySelector(`#input${goodId}`);
                 let countValue = Number(count.value);
+                console.log(increment.onclick, decrement.onclick)
 
-                increment.onclick = function () {
+                increment.onclick = () => {
                     count.value = countValue + 1;
-                };
-
-
-                decrement.onclick = function () {
-                    if (countValue > 0) {
-                        count.value = countValue - 1;
-                    }
-                };
+                }
+                decrement.onclick = () => {
+                    count.value = countValue > 0 ? countValue - 1 : 0;
+                }
             }
+
         })
     });
+
 
 
 

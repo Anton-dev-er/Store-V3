@@ -5,15 +5,16 @@
   <meta charset="UTF-8">
   <title>Title</title>
 
-  <link rel="stylesheet" href="{% static 'css/home.css' %}">
-  <link rel="stylesheet" href="{% static 'css/catalog_products.css' %}">
-  <link rel="stylesheet" href="{% static 'css/catalog_dropdown.css' %}">
-  <link rel="stylesheet" href="{% static 'css/components.css' %}">
-  <link rel="stylesheet" href="{% static 'css/shop.css' %}">
-  <link rel="stylesheet" href="{% static 'css/item_detail.css' %}">
+  <link rel="stylesheet" href="{% static 'mainApp/css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'mainApp/css/catalog_products.css' %}">
+  <link rel="stylesheet" href="{% static 'mainApp/css/catalog_dropdown.css' %}">
+  <link rel="stylesheet" href="{% static 'mainApp/css/components.css' %}">
+  <link rel="stylesheet" href="{% static 'mainApp/css/shop.css' %}">
+  <link rel="stylesheet" href="{% static 'mainApp/css/item_detail.css' %}">
 
-  <link rel="stylesheet" href="{% static 'css/basket.css' %}">
+  <link rel="stylesheet" href="{% static 'basket/css/basket.css' %}">
 
+  <link rel="stylesheet" href="{% static 'account/css/auth_style.css' %}">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -27,10 +28,11 @@
 
 {% include 'include/_header-info.html' %}
 
+
 {% block content %}{% endblock %}
 
 
-<script src="{% static 'js/Count.js' %}"></script>
+<script src="{% static 'mainApp/js/Count.js' %}"></script>
 
 </body>
 </html>

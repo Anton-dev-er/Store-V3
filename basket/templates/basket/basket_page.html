@@ -29,7 +29,7 @@
                 <button type="button"
                         id="delete-button"
                         data-id="{{ good.pk }}"
-                        class="product-btn cursor-pointer">
+                        class="product-btn">
                   Delete
                 </button>
                 <div style="display: flex; align-items: center">
@@ -47,11 +47,16 @@
           {% endwith %}
         {% endfor %}
       </div>
-      <button type="button"
-              id="update-button"
-              class="product-btn cursor-pointer">
-        Update Items
-      </button>
+      <div class="basket__proucts__bottom">
+        <button type="button"
+                id="update-button"
+                class="product-btn">
+          Update Items
+        </button>
+        <div class="basket__proucts__bottom__total">
+          Total: ${{ basket.get_total_price }}
+        </div>
+      </div>
     </div>
   </section>
 
@@ -78,16 +83,16 @@
                   action: 'UPDATE'
               },
               success: function (json) {
-                  let items_price = document.querySelectorAll('.basket__proucts__item__bottom__price')
+                  document.querySelector('.basket__proucts__bottom__total').innerHTML = `$${json['total'].toFixed(1)}`
                   let new_elements = json['Ids and total prices']
 
                   for (let value of new_elements) {
                       let id = Object.keys(value)[0]
                       let total_price = Object.values(value)[0]
-                      let test = document.querySelector(`#item__total-price${id}`).innerHTML = `$${total_price.toFixed(1)}`
-                      console.log(test.innerHTML)
+                      document.querySelector(`#item__total-price${id}`).innerHTML = `$${total_price.toFixed(1)}`
                   }
 
+                  document.querySelector(".basket__qty").innerHTML = json.qty
               },
               error: function (xhr, errmsg, err) {
               }
@@ -106,6 +111,8 @@
                   action: 'DELETE'
               },
               success: function (json) {
+                  document.querySelector(".basket__qty").innerHTML = json.qty
+
                   document.querySelector(`#basket__item${good_id}`).remove()
               },
               error: function (xhr, errmsg, err) {

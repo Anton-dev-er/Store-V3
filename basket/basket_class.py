@@ -36,6 +36,9 @@ class Basket:
 
         self.save()
 
+    def get_total_price(self):
+        return sum(float(item['price']) * item['qty'] for item in self.basket.values())
+
     def save(self):
         self.session.modified = True
 
@@ -51,3 +54,6 @@ class Basket:
             item['price'] = float(item['price'])
             item['total_price'] = item['price'] * item['qty']
             yield item
+
+    def __len__(self):
+        return sum(item['qty'] for item in self.basket.values())

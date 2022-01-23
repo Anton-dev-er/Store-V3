@@ -5,6 +5,17 @@
 
 }
 
+.basket__proucts__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.basket__proucts__bottom__total {
+    font-size: 22px;
+    margin-right: 50px;
+}
+
 .basket__proucts__list {
     border-bottom: 1px solid #B0BCC2;
 }

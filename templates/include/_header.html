@@ -8,23 +8,36 @@
         <a href="#" class="nav__link">Contact</a>
         <a href="{% url 'account:profile' %}" class="nav__link">Profile
           {% if user.is_authenticated %}
-          - {{ user }}
+            - {{ user }}
           {% endif %}
         </a>
       </nav>
 
       <div class="header__right">
         {% if user.is_authenticated %}
-        <a href="{% url 'account:logout' %}">Logout</a>
+          <a href="{% url 'account:logout' %}">Logout</a>
         {% else %}
-        <a style="margin-right: 15px;" href="{% url 'account:login' %}">Login</a>
-        <a style="margin-right: 15px;" href="{% url 'account:register' %}">Register</a>
+          <a style="margin-right: 15px;" href="{% url 'account:login' %}">Login</a>
+          <a style="margin-right: 15px;" href="{% url 'account:register' %}">Register</a>
         {% endif %}
 
-        <img class="header__wishlist" src="{% static 'img/heart-black.svg' %}" alt="">
-        <a href="{% url 'basket:basket_page' %}">
-          <img class="header__basket" src="{% static 'img/shopping-cart.svg' %}" alt="">
-        </a>
+        <div>
+          <img class="header__wishlist" src="{% static 'mainApp/img/heart-black.svg' %}" alt="">
+
+          <div class="basket">
+            <a href="{% url 'basket:basket_page' %}">
+              <img src="{% static 'mainApp/img/shopping-cart.svg' %}" alt="">
+            </a>
+            {% with total_qty=basket|length %}
+              <span class="basket__qty">
+                {% if total_qty > 0 %}
+                  {{ total_qty }}
+                {% endif %}
+              </span>
+            {% endwith %}
+
+          </div>
+        </div>
       </div>
     </div>
   </div>

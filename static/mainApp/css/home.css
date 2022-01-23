@@ -68,13 +68,14 @@ body {
     display: flex;
 }
 
-.header__basket,
-.header__wishlist {
-    cursor: pointer
+.header__count {
+    position: absolute;
 }
 
 .header__wishlist {
     margin-right: 10px;
+    height: 15px;
+    width: 15px;
 }
 
 .nav__link:hover {

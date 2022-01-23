@@ -6,8 +6,13 @@ from .models import UserBase
 
 
 class UserLoginForm(forms.Form):
-    email = forms.CharField(label="email", widget=forms.EmailInput)
+    email = forms.CharField(label="email", widget=forms.EmailInput,)
     password = forms.CharField(label="password", widget=forms.PasswordInput)
+    
+    def __init__(self, *args, **kwargs):
+        super(UserLoginForm, self).__init__(*args, **kwargs)
+        for field in self.visible_fields():
+            field.field.widget.attrs['class'] = 'auth__field__input'
 
 
 class RegistrationForm(forms.ModelForm):
@@ -39,4 +44,9 @@ class RegistrationForm(forms.ModelForm):
             raise forms.ValidationError(
                 'Please use another Email, that is already taken')
         return email
+
+    def __init__(self, *args, **kwargs):
+        super(RegistrationForm, self).__init__(*args, **kwargs)
+        for field in self.visible_fields():
+            field.field.widget.attrs['class'] = 'auth__field__input'
 

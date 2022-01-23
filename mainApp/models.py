@@ -55,6 +55,8 @@ class Good(m.Model):
         verbose_name_plural = "Товары"
 
     def save(self, *args, **kwargs):
+        if self.category.get_children():
+            raise ValueError("Is not last child")
         self.slug = slugify(f"{self.title}")
         super(Good, self).save(*args, **kwargs)
 
@@ -63,6 +65,3 @@ class Good(m.Model):
 
     def get_absolute_url(self):
         return reverse('good_detail', kwargs={'slug': self.slug})
-
-
-

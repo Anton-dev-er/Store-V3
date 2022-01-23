@@ -57,7 +57,7 @@
             <button type="button"
                     id="add-button"
                     value="{{ good.pk }}"
-                    class="product-btn cursor-pointer">
+                    class="product-btn">
               Add to basket
             </button>
           </div>
@@ -70,7 +70,7 @@
 
   <script>
       $(document).on('click', '#add-button', function (e) {
-          e.preventDefault();
+          alert("Products has been added")
           $.ajax({
               type: 'POST',
               url: '{% url "basket:basket_add" %}',
@@ -81,6 +81,7 @@
                   action: 'ADD'
               },
               success: function (json) {
+                  document.querySelector(".basket__qty").innerHTML = json.qty
               },
               error: function (xhr, errmsg, err) {
               }

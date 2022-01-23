@@ -3,11 +3,27 @@
 
 
 {% block content %}
-
-  <form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Send</button>
-  </form>
+  <section class="auth-login">
+    <div class="container auth-login__inner">
+      <h1 class="auth-title">Sign in to your account</h1>
+      <form id="auth-login__form" action="" method="post">
+        {% csrf_token %}
+        <div class="auth__field">
+          <label for="{{ form.email.id_for_label }}">Email</label>
+          {{ form.email }}
+          <span class="auth__error">{{ form.email.errors }}</span>
+        </div>
+        <div class="auth__field">
+          <label for="{{ form.password.id_for_label }}">Password</label>
+          {{ form.password }}
+          <span class="auth__error">{{ form.password.errors }}</span>
+        </div>
+        <a class="btn auth__btn" onclick="document.getElementById('auth-login__form').submit()">Continue</a>
+      </form>
+      <p style="margin-top: 25px;">
+        Don't have an account?<a href="{% url 'account:register' %}"> Sign up</a>
+      </p>
+    </div>
+  </section>
 
 {% endblock %}

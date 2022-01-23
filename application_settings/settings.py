@@ -127,6 +127,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'mainApp/static'),
     os.path.join(BASE_DIR, 'basket/static'),
+    os.path.join(BASE_DIR, 'account/static'),
 ]
 
 # Default primary key field type
@@ -150,7 +151,7 @@ EMAIL_USE_SSL = False
 EMAIL_PORT = 587
 EMAIL_SUBJECT_PREFIX = '[Django]'
 EMAIL_HOST_USER = 'from_email@gmail.com'
-EMAIL_HOST_PASSWORD = 'from_email password'
+EMAIL_HOST_PASSWORD = 'from_email-password'
 """
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

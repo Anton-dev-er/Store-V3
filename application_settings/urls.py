@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('mainApp.urls')),
     path('basket/', include('basket.urls')),
     path('account/', include('account.urls')),
+    path('wishlist/', include('wishlist.urls')),
 ]
 
 if settings.DEBUG:

@@ -22,7 +22,12 @@
         {% endif %}
 
         <div>
-          <img class="header__wishlist" src="{% static 'mainApp/img/heart-black.svg' %}" alt="">
+
+          <div class="header__wishlist">{% csrf_token %}
+            <a href="{% url 'wishlist:wishlist_page' %}">
+              <img class="header__wishlist" src="{% static 'mainApp/img/heart-black.svg' %}" alt="">
+            </a>
+          </div>
 
           <div class="basket">
             <a href="{% url 'basket:basket_page' %}">

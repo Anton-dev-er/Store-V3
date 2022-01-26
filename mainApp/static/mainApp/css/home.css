@@ -73,9 +73,12 @@ body {
 }
 
 .header__wishlist {
+    display: inline-block;
     margin-right: 10px;
     height: 15px;
     width: 15px;
+
+    cursor: pointer;
 }
 
 .nav__link:hover {

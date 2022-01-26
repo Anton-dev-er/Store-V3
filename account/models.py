@@ -1,7 +1,7 @@
 from django.contrib.auth.models import (AbstractBaseUser,
                                         BaseUserManager,
                                         PermissionsMixin)
-from django.db import models
+from django.db import models as m
 from django_countries.fields import CountryField
 
 
@@ -37,23 +37,23 @@ class CustomAccountManager(BaseUserManager):
 
 
 class UserBase(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True)
-    user_name = models.CharField(max_length=150, unique=True)
-    first_name = models.CharField(max_length=150, blank=True)
-    about = models.TextField(max_length=500, blank=True)
+    email = m.EmailField(unique=True)
+    user_name = m.CharField(max_length=150, unique=True)
+    first_name = m.CharField(max_length=150, blank=True)
+    about = m.TextField(max_length=500, blank=True)
     # Delivery details
     country = CountryField()
-    phone_number = models.CharField(max_length=15, blank=True)
-    postcode = models.CharField(max_length=12, blank=True)
-    address_line_1 = models.CharField(max_length=150, blank=True)
-    address_line_2 = models.CharField(max_length=150, blank=True)
-    town_city = models.CharField(max_length=150, blank=True)
+    phone_number = m.CharField(max_length=15, blank=True)
+    postcode = m.CharField(max_length=12, blank=True)
+    address_line_1 = m.CharField(max_length=150, blank=True)
+    address_line_2 = m.CharField(max_length=150, blank=True)
+    town_city = m.CharField(max_length=150, blank=True)
     # User Status
-    is_active = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
+    is_active = m.BooleanField(default=False)
+    is_staff = m.BooleanField(default=False)
 
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = m.DateTimeField(auto_now_add=True)
+    updated = m.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = 'email'
 

@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'mainApp.apps.MainappConfig',
     'basket.apps.BasketConfig',
     'account.apps.AccountConfig',
+    'wishlist.apps.WishlistConfig',
 
     'mptt',
-    'crispy_forms',
 ]
 
 
@@ -64,6 +64,7 @@ TEMPLATES = [
                  os.path.join(BASE_DIR, 'mainApp/templates'),
                  os.path.join(BASE_DIR, 'basket/templates'),
                  os.path.join(BASE_DIR, 'account/templates'),
+                 os.path.join(BASE_DIR, 'wishlist/templates'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -128,6 +129,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'mainApp/static'),
     os.path.join(BASE_DIR, 'basket/static'),
     os.path.join(BASE_DIR, 'account/static'),
+    os.path.join(BASE_DIR, 'wishlist/static'),
 ]
 
 # Default primary key field type

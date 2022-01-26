@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
-
-  {% include 'mainApp/include/_categories.html' %}
-
   <section class="products">
-    <div class="products__error hidden__item"><p>You have to be <a href="{% url "account:login" %}"> logged in</a> to add a product
-      to the basket</p></div>
     <div class="container">
       <div class="products__inner">
+        <h1>WishList</h1>
+
         <div class="products__list">
-          {% for good in goods %}
-            {% include 'mainApp/include/_output_good.html' %}
+          {% for item in items %}
+            {% with good=item.good %}
+              {% include 'mainApp/include/_output_good.html' %}
+            {% endwith %}
           {% endfor %}
         </div>
       </div>
@@ -19,42 +19,28 @@
   </section>
 
   <script>
-      window.addEventListener("pageshow", function (event) {
-          var historyTraversal = event.persisted ||
-              (typeof window.performance != "undefined" &&
-                  window.performance.navigation.type === 2);
-          if (historyTraversal) {
-              window.location.reload();
-          }
-      });
 
       Array.from(document.querySelectorAll('.wishlist')).forEach(
           function (item) {
               item.addEventListener('click', function (e) {
                   let currentElement = e.target.parentElement.parentElement.parentElement;
-
                   if (currentElement.className === 'products__item__inner') {
                       currentElement = currentElement.querySelector('.wishlist')
                   }
 
                   if (currentElement.className.indexOf('wishlist') !== -1) {
-                      let currentElementId = currentElement.dataset.id
-
                       e.preventDefault()
+                      let currentElementId = currentElement.dataset.id
                       $.ajax({
                           type: 'POST',
-                          url: '{% url "wishlist:wishlist_add" %}',
+                          url: '{% url "wishlist:wishlist_delete" %}',
                           data: {
                               goodid: currentElementId,
                               csrfmiddlewaretoken: "{{csrf_token}}",
-                              action: 'ADD'
+                              action: 'DELETE'
                           },
                           success: function (json) {
-                              if (json['is_authenticated']) {
-                                  currentElement.classList.toggle('wishlist__active')
-                              } else {
-                                document.querySelector('.products__error').classList.remove('hidden__item')
-                              }
+                              document.querySelector(`#products__item${currentElementId}`).remove()
                           },
                           error: function (xhr, errmsg, err) {
                           }

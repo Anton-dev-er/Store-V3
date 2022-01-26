@@ -48,8 +48,12 @@ input::selection,
 
 }
 
-.wishlist:hover #black-heart {
-    fill: #e3d0a2;
+.wishlist #black-heart:hover {
+    fill: #ad986e;
+}
+
+.wishlist__active #black-heart {
+    fill: #ad986e;
 }
 
 

@@ -2,6 +2,29 @@
 
 .products {
     margin-top: 80px;
+    position: relative;
+}
+
+.products__error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    height: 50px;
+
+    top: -80px;
+
+    color: black ;
+
+    background-color: #ea6f6f;
+
+    opacity:1 ;
+    transition: opacity 1s ease-out;
+}
+
+.hidden__item {
+    opacity:0;
 }
 
 .products__filter {

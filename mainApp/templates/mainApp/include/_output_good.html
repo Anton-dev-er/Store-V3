@@ -1,5 +1,5 @@
 {% load static %}
-<div class="products__item" id="products__item{{ good.id }}">
+<div class="products__item" id="products__item{{ good.id }}" data-views="{{ good.views }}" data-created={{ good.created_dt }}>
   <div class="products__item__inner">
     <div class="product__item__top">
       <div class="status">status</div>

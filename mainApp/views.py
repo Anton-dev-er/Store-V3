@@ -9,10 +9,14 @@ class HomeView(View):
     template_name = 'mainApp/home.html'
 
     def get(self, request, *args, **kwargs):
+        all_goods = Good.objects.all()[:10]
         context = {
-
+            "all_goods": all_goods
         }
         return render(request, self.template_name, context=context)
+
+    def post(self, request, *args, **kwargs):
+        pass
 
 
 class CatalogListView(ListView):
@@ -59,4 +63,11 @@ class GoodByCategoryView(ListView):
 class GoodDetailView(DetailView):
     template_name = 'mainApp/good_detail.html'
     model = Good
+
+    def dispatch(self, request, *args, **kwargs):
+        slug = self.kwargs['slug']
+        good = Good.objects.get(slug=slug)
+        good.views = good.views + 1
+        good.save()
+        return super(GoodDetailView, self).dispatch(request, args, kwargs)
 

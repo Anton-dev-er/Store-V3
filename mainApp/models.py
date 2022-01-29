@@ -27,6 +27,10 @@ class Category(MPTTModel):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(f"{self.title}")
+        parent = self.parent
+        print(parent)
+        if Good.objects.filter(category=parent).exists():
+            raise ValueError("You cann't create categoty if parent has goods")
         super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -39,6 +43,7 @@ class Good(m.Model):
     description = m.TextField(verbose_name="Описание товара", blank=True, null=True)
     price = m.PositiveIntegerField(verbose_name="Цена")
     photo = m.ImageField(upload_to="photos/goods/%m/%d/", verbose_name="Фото товара", default="empty.jfif")
+    views = m.PositiveIntegerField(default=0, verbose_name="Количество просмотров")
 
     is_published = m.BooleanField(default=True, verbose_name="Опулбиковано ?")
 
@@ -56,7 +61,7 @@ class Good(m.Model):
 
     def save(self, *args, **kwargs):
         if self.category.get_children():
-            raise ValueError("Is not last child")
+            raise ValueError("It's not last child")
         self.slug = slugify(f"{self.title}")
         super(Good, self).save(*args, **kwargs)
 

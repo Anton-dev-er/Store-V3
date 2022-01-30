@@ -9,9 +9,18 @@ class HomeView(View):
     template_name = 'mainApp/home.html'
 
     def get(self, request, *args, **kwargs):
-        all_goods = Good.objects.all()[:10]
+        filter_value = request.GET.get('filter')
+        if filter_value == 'by-date':
+            ordered_goods = Good.objects.order_by('-created_dt')[:8]
+        elif filter_value == 'by-views':
+            ordered_goods = Good.objects.order_by('-views')[:8]
+        elif filter_value == 'by-price':
+            ordered_goods = Good.objects.order_by('price')[:8]
+        else:
+            ordered_goods = Good.objects.all()[:8]
+
         context = {
-            "all_goods": all_goods
+            "all_goods": ordered_goods
         }
         return render(request, self.template_name, context=context)
 

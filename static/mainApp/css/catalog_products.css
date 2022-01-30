@@ -15,16 +15,16 @@
 
     top: -80px;
 
-    color: black ;
+    color: black;
 
     background-color: #ea6f6f;
 
-    opacity:1 ;
+    opacity: 1;
     transition: opacity 1s ease-out;
 }
 
 .hidden__item {
-    opacity:0;
+    opacity: 0;
 }
 
 .products__filter {
@@ -46,14 +46,17 @@
 
 .products__control__item {
     margin-top: 20px;
-    color: #B0BCC2;
     margin-right: 30px;
     cursor: pointer;
 
+}
+
+.products__control__item a {
+    color: #B0BCC2;
     transition: color .1s linear;
 }
 
-.products__control__item:hover {
+.products__control__item:hover a {
     color: #1e1e1e;
 }
 

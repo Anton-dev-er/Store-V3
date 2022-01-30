@@ -1,6 +1,6 @@
 .product-detail__inner {
-    margin-top: 50px;
     display: flex;
+    margin-top: 50px;
 
 
     font-family: "Amatic", sans-serif;
@@ -9,8 +9,10 @@
 
 .product-detail__info,
 .product-detail__img {
+    width: 50%;
     margin: 0 10px;
 }
+
 
 .product-detail__info {
     display: flex;

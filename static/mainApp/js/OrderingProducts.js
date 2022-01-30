@@ -10,7 +10,6 @@ Array.from(filterItems).forEach(
             var allGoodsArray = Array.from(allGoods);
             let sorted = []
 
-
             if (filter === 'by-views') {
                 sorted = allGoodsArray.sort((a, b) => +a.dataset.views - +b.dataset.views)
                 productList.classList.toggle('reverse-order')
@@ -21,21 +20,20 @@ Array.from(filterItems).forEach(
                     item.innerHTML = "Most popular"
                 }
                 sorted.forEach(e => productList.appendChild(e));
+            } else if (filter === 'by-price') {
+                sorted = allGoodsArray.sort((a, b) =>
+                    +a.dataset.price - +b.dataset.price);
 
-            } else if (filter === 'by-date') {
-                let sorted = allGoodsArray.sort((a, b) => +a.dataset.created - +b.dataset.created);
                 productList.classList.toggle('reverse-order')
-
                 if (productList.className.indexOf('reverse-order') !== -1) {
-                    item.innerHTML = "Oldest products"
+                    item.innerHTML = "Lowest price"
                 } else {
-                    item.innerHTML = "Newest popular"
+                    sorted = sorted.reverse()
+                    item.innerHTML = "Bigget price"
                 }
-
-                sorted.reverse().forEach(e => productList.appendChild(e));
             }
 
-
+            sorted.forEach(e => productList.appendChild(e));
         })
     }
 )

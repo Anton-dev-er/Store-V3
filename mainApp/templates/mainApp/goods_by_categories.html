@@ -5,10 +5,17 @@
   {% include 'mainApp/include/_categories.html' %}
 
   <section class="products">
-    <div class="products__error hidden__item"><p>You have to be <a href="{% url "account:login" %}"> logged in</a> to add a product
-      to the basket</p></div>
+    <div class="products__error hidden__item"><p>You have to be <a href="{% url "account:login" %}"> logged in</a> to
+      add a product to the basket</p></div>
     <div class="container">
       <div class="products__inner">
+        <div class="products__filter">
+          <ul class="products__control">
+            <li class="products__control__item" data-filter="all">All</li>
+            <li class="products__control__item" data-filter="by-views">Most popular</li>
+            <li class="products__control__item" data-filter="by-price">Biggest price</li>
+          </ul>
+        </div>
         <div class="products__list">
           {% for good in goods %}
             {% include 'mainApp/include/_output_good.html' %}
@@ -53,7 +60,7 @@
                               if (json['is_authenticated']) {
                                   currentElement.classList.toggle('wishlist__active')
                               } else {
-                                document.querySelector('.products__error').classList.remove('hidden__item')
+                                  document.querySelector('.products__error').classList.remove('hidden__item')
                               }
                           },
                           error: function (xhr, errmsg, err) {
@@ -63,5 +70,7 @@
               })
           });
   </script>
+  <script src="{% static 'mainApp/js/OrderingProducts.js' %}"></script>
+
 
 {% endblock %}

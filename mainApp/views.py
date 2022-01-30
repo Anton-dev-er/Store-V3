@@ -39,23 +39,27 @@ class CategoryByGenderView(View):
 
     def get(self, request, *args, **kwargs):
         slug_gender = self.kwargs['slug']
+        categories = Category.objects.get(slug=slug_gender).get_descendants(include_self=False)
+        goods = []
+        for cat in categories:
+            if cat.is_published:
+                goods.extend(cat.good_set.filter(is_published=True))
 
         context = {
-            'categories': Category.objects.get(
-                slug=slug_gender
-            ).get_descendants(include_self=False),
+            'categories': categories,
             'slug_gender': slug_gender,
             'categories_gender': Category.objects.filter(level=0),
+            'goods': goods
         }
         return render(request, self.template_name, context=context)
 
 
-class GoodByCategoryView(ListView):
+class GoodByCategoryView(View):
     template_name = 'mainApp/goods_by_categories.html'
 
     def get(self, request, *args, **kwargs):
         slug_gender = self.kwargs['slug_gender']
-        goods = Good.objects.filter(category__slug=self.kwargs['slug_category'])
+        goods = Good.objects.filter(category__slug=self.kwargs['slug_category'], is_published=True)
         categories = Category.objects.get(slug=slug_gender).get_descendants(include_self=False)
         Genders = Category.objects.filter(level=0)
 

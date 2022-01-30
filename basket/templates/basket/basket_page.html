@@ -34,9 +34,9 @@
                 </button>
                 <div style="display: flex; align-items: center">
                   <div class="product-btn" id="product-btn__busket" data-id="{{ good.pk }}">
-                    <span id="product-btn__dec{{ good.pk }}" class="product-btn__qty">-</span>
+                    <span id="product-btn__dec{{ good.pk }}" class="product-btn__qty" data-id="{{ good.pk }}">-</span>
                     <input id="input{{ good.pk }}" type="text" value="{{ item.qty }}">
-                    <span id="product-btn__inc{{ good.pk }}" class="product-btn__qty">+</span>
+                    <span id="product-btn__inc{{ good.pk }}" class="product-btn__qty" data-id="{{ good.pk }}">+</span>
                   </div>
                   <div id="item__total-price{{ good.pk }}" class="basket__proucts__item__bottom__price">
                     ${{ item.total_price }}

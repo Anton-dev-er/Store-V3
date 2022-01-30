@@ -50,9 +50,9 @@
 
           <div class="product-detail__info__btn">
             <div class="product-btn">
-              <span id="product-btn__dec" class="product-btn__qty">-</span>
+              <span id="product-btn__dec" class="product-btn__qty" data-id="{{ good.id }}">-</span>
               <input id="input" type="text" value="1">
-              <span id="product-btn__inc" class="product-btn__qty">+</span>
+              <span id="product-btn__inc" class="product-btn__qty" data-id="{{ good.id }}">+</span>
             </div>
             <button type="button"
                     id="add-button"

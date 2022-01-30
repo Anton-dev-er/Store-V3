@@ -1,29 +1,19 @@
-let productBtns = document.querySelectorAll('.product-btn');
+let productsQty = document.querySelectorAll('.product-btn__qty');
 
-Array.from(productBtns).forEach(
+
+Array.from(productsQty).forEach(
     function (button) {
         button.addEventListener('click', function (e) {
-            let productBtn = e.target.parentElement;
-            let goodId = productBtn.dataset.id
+            let productQty = e.target;
+            let goodId = productQty.dataset.id
+            let count = document.querySelector(`#input${goodId}`);
+            let countValue = Number(count.value);
 
-            if (goodId === undefined) {
-                goodId = ''
+            if (productQty.id === `product-btn__inc${goodId}`) {
+                count.value = countValue + 1;
+            } else if (productQty.id === `product-btn__dec${goodId}`) {
+                count.value = countValue > 0 ? countValue - 1 : 0;
             }
-
-            if (productBtn.className === 'product-btn') {
-                let increment = productBtn.querySelector(`#product-btn__inc${goodId}`);
-                let decrement = productBtn.querySelector(`#product-btn__dec${goodId}`);
-                let count = productBtn.querySelector(`#input${goodId}`);
-                let countValue = Number(count.value);
-
-                increment.onclick = () => {
-                    count.value = countValue + 1;
-                }
-                decrement.onclick = () => {
-                    count.value = countValue > 0 ? countValue - 1 : 0;
-                }
-            }
-
         })
     });
 

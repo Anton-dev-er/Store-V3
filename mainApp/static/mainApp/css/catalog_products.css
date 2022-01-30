@@ -50,15 +50,17 @@
     cursor: pointer;
 
 }
-
+.products__control__item,
 .products__control__item a {
     color: #B0BCC2;
     transition: color .1s linear;
 }
 
+.products__control__item:hover,
 .products__control__item:hover a {
     color: #1e1e1e;
 }
+
 
 .products__list {
     display: flex;

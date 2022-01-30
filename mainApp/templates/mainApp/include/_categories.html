@@ -31,7 +31,7 @@
       <a class="submenu-link"
          type="button">
         {{ cat.title }} </a>
-    {% else %}
+    {% elif cat.is_published %}
       <a href="{% url 'good_by_category' slug_gender=slug_gender slug_category=cat.slug %}">{{ cat.title }} </a>
     {% endif %}
     {% for level in structure.closed_levels %}
